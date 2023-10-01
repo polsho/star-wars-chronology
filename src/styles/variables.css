@@ -1,0 +1,6 @@
+:root {
+  --border-color: white;
+  --border-accent-color: rgb(0, 128, 255);
+  --odd-card-margin: 50px;
+  --even-card-margin: 150px;
+}

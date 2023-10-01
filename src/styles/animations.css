@@ -1,0 +1,8 @@
+@keyframes line-move {
+  from {
+    transform: scale(0);
+  }
+  tp {
+    transform: scale(1);
+  }
+}

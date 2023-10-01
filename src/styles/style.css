@@ -1,0 +1,196 @@
+.page {
+  min-inline-size: 320px;
+  min-block-size: 100dvb;
+  background-image: linear-gradient(3deg, #e6d16c, #16014c 35%);
+  background-attachment: fixed;
+}
+
+.header__title {
+  text-align: center;
+  padding: 50px 40px;
+  font-size: 2rem;
+  color: var(--border-color);
+  letter-spacing: 0.3125em;
+  text-shadow: 3px 2px yellow;
+  text-transform: uppercase;
+}
+
+.content {
+  max-inline-size: 1400px;
+  margin: 100px auto;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  gap: 0 60px;
+  padding: 15px;
+}
+
+.card-container::before {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: -1;
+  inset-inline-start: calc((100% / 2) - 5px);
+  inline-size: 10px;
+  block-size: 170%;
+  background: linear-gradient(transparent, var(--border-color), transparent);
+}
+
+.card {
+  grid-row: span 2;
+  position: relative;
+  max-inline-size: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  background-color: rgba(245, 245, 245, 0.4);
+  border: 2px solid var(--border-color);
+  border-radius: 5px;
+  box-shadow: 2px 2px 3px var(--border-color);
+  transition:
+    border 0.3s 0.6s linear,
+    box-shadow 0.3s 0.6s linear;
+  cursor: pointer;
+}
+
+.card:hover {
+  border: 2px solid var(--border-accent-color);
+  box-shadow: 2px 2px 10px var(--border-accent-color);
+  transition:
+    border 0.3s linear,
+    box-shadow 0.3s linear;
+}
+
+.odd-card {
+  justify-self: end;
+  margin-block-end: 100px;
+}
+
+.even-card {
+  justify-self: start;
+  margin-block-start: 100px;
+}
+
+.odd-card::before,
+.even-card::before {
+  content: '';
+  display: block;
+  position: relative;
+  inset-inline-start: 288px;
+  /* inset-block-start: var(--odd-card-margin); */
+  inset-block-start: 140px;
+  inline-size: 60px;
+  block-size: 4px;
+  transform: scale(0);
+  transform-origin: left;
+  background-color: var(--border-accent-color);
+  box-shadow: 2px 2px 10px var(--border-accent-color);
+  transition: transform 0.3s 0.3s linear;
+}
+
+.even-card::before {
+  inset-inline-start: -70px;
+  inset-block-start: 295px;
+  transform-origin: right;
+}
+
+.odd-card:hover::before,
+.even-card:hover::before {
+  transform: scale(1);
+  transform-origin: left;
+  transition: transform 0.3s 0.3s linear;
+}
+
+.even-card:hover::before {
+  transform-origin: right;
+}
+
+.card:hover + .timeline__year {
+  border: 2px solid var(--border-accent-color);
+  box-shadow:
+    2px 0 10px var(--border-accent-color),
+    -2px 0 10px var(--border-accent-color),
+    0 2px 10px var(--border-accent-color),
+    0 -2px 10px var(--border-accent-color);
+  transition:
+    border 0.3s 0.6s linear,
+    box-shadow 0.3s 0.6s linear;
+}
+
+.card__picture {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: top;
+}
+
+.card__title {
+  padding: 10px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.card__description {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.timeline__year {
+  inline-size: 80px;
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block-start: var(--odd-card-margin);
+  background-color: var(--border-color);
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  box-shadow:
+    2px 0 3px var(--border-color),
+    -2px 0 3px var(--border-color),
+    0 2px 3px var(--border-color),
+    0 -2px 3px var(--border-color);
+  transition:
+    border 0.3s linear,
+    box-shadow 0.3s linear;
+  font-weight: 700;
+}
+
+.starting-point {
+  background-color: rgb(130, 251, 130);
+  border: 2px solid rgb(11, 246, 11);
+  box-shadow:
+    2px 0 3px rgb(11, 246, 11),
+    -2px 0 3px rgb(11, 246, 11),
+    0 2px 3px rgb(11, 246, 11),
+    0 -2px 3px rgb(11, 246, 11);
+}
+
+@media (width < 768px) {
+  .card-container {
+    grid-template-columns: 1fr 0.5fr;
+    grid-template-rows: 1fr;
+    gap: 20px;
+  }
+
+  .card {
+    grid-row: span 1;
+    justify-self: center;
+    margin: 0;
+  }
+
+  .timeline__year {
+    justify-self: center;
+    margin: 0;
+  }
+
+  .odd-card:hover::before,
+  .even-card:hover::before {
+    transform: scale(0);
+  }
+}
